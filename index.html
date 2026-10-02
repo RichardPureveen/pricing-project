@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hello, pricing! | Richard Pureveen</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #202a26;
+      --muted: #68736d;
+      --paper: #f7f8f3;
+      --card: #ffffff;
+      --line: #e1e6de;
+      --green: #176b50;
+      --green-light: #e8f3eb;
+      --coral: #d96e51;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background-color: var(--paper);
+      background-image: radial-gradient(#dce7dc 0.7px, transparent 0.7px);
+      background-size: 18px 18px;
+      color: var(--ink);
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      line-height: 1.5;
+    }
+
+    main {
+      width: min(100% - 36px, 1040px);
+      margin: 0 auto;
+      padding: 64px 0 48px;
+    }
+
+    .intro {
+      margin-bottom: 32px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--green);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.3rem, 8vw, 3.7rem);
+      font-weight: 500;
+      line-height: 1.1;
+    }
+
+    .byline {
+      margin: 12px 0 0;
+      color: var(--muted);
+    }
+
+    .plans {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .plan {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--card);
+      box-shadow: 0 8px 24px rgb(32 42 38 / 5%);
+    }
+
+    .plan.featured {
+      border: 2px solid var(--green);
+      padding: 23px;
+    }
+
+    .badge {
+      position: absolute;
+      top: 0;
+      right: 16px;
+      transform: translateY(-50%);
+      padding: 4px 9px;
+      border-radius: 4px;
+      background: var(--green);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 1.15rem;
+    }
+
+    .price {
+      margin: 12px 0 18px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 2.2rem;
+      line-height: 1.1;
+    }
+
+    .price span {
+      color: var(--muted);
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      font-size: 0.85rem;
+    }
+
+    .rule {
+      height: 1px;
+      margin-bottom: 17px;
+      border: 0;
+      background: var(--line);
+    }
+
+    ul {
+      display: grid;
+      gap: 11px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: #47534c;
+      font-size: 0.91rem;
+    }
+
+    li::before {
+      content: "✓";
+      margin-right: 9px;
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    footer {
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 0.8rem;
+      text-align: center;
+    }
+
+    @media (max-width: 680px) {
+      main { padding-top: 42px; }
+      .intro { margin-bottom: 28px; }
+      .plans { grid-template-columns: 1fr; gap: 14px; }
+      .plan { padding: 21px; }
+      .plan.featured { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header class="intro">
+      <p class="eyebrow">Tallywise · simple money tracking</p>
+      <h1>Hello, pricing!</h1>
+      <p class="byline">Richard Pureveen</p>
+    </header>
+
+    <section class="plans" aria-label="Tallywise monthly plans">
+      <article class="plan">
+        <h2>Free</h2>
+        <p class="price">€0 <span>/ month</span></p>
+        <hr class="rule">
+        <ul>
+          <li>Track 2 budgets</li>
+          <li>Monthly spending summary</li>
+          <li>Community support</li>
+        </ul>
+      </article>
+
+      <article class="plan featured">
+        <span class="badge">Most popular</span>
+        <h2>Basic</h2>
+        <p class="price">€8 <span>/ month</span></p>
+        <hr class="rule">
+        <ul>
+          <li>Unlimited budgets</li>
+          <li>Custom spending categories</li>
+          <li>Email support</li>
+        </ul>
+      </article>
+
+      <article class="plan">
+        <h2>Pro</h2>
+        <p class="price">€18 <span>/ month</span></p>
+        <hr class="rule">
+        <ul>
+          <li>Everything in Basic</li>
+          <li>Shared household budgets</li>
+          <li>Priority support</li>
+        </ul>
+      </article>
+    </section>
+
+    <footer>Prices shown in euros, billed monthly.</footer>
+  </main>
+</body>
+</html>
