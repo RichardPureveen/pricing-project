@@ -3,206 +3,423 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hello, pricing! | Richard Pureveen</title>
+  <title>CargoVolt | City-centre delivery by cargo bike</title>
   <style>
     :root {
       color-scheme: light;
-      --ink: #202a26;
-      --muted: #68736d;
-      --paper: #f7f8f3;
-      --card: #ffffff;
-      --line: #e1e6de;
-      --green: #176b50;
-      --green-light: #e8f3eb;
-      --coral: #d96e51;
+      --green: #10B981;
+      --green-dark: #087d58;
+      --ink: #17231f;
+      --muted: #53615b;
+      --line: #dce7e1;
+      --surface: #f3f8f5;
     }
 
     * { box-sizing: border-box; }
 
+    html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
-      background-color: var(--paper);
-      background-image: radial-gradient(#dce7dc 0.7px, transparent 0.7px);
-      background-size: 18px 18px;
       color: var(--ink);
-      font-family: "Segoe UI", Tahoma, sans-serif;
-      line-height: 1.5;
+      background: #fff;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
     }
 
-    main {
-      width: min(100% - 36px, 1040px);
-      margin: 0 auto;
-      padding: 64px 0 48px;
+    a { color: inherit; }
+
+    .wrap {
+      width: min(100% - 40px, 1100px);
+      margin-inline: auto;
     }
 
-    .intro {
-      margin-bottom: 32px;
-      text-align: center;
+    .site-header {
+      border-bottom: 1px solid var(--line);
+      background: #fff;
     }
 
-    .eyebrow {
-      margin: 0 0 10px;
-      color: var(--green);
-      font-size: 0.76rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+    .header-inner {
+      display: flex;
+      min-height: 76px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
     }
+
+    .brand {
+      color: var(--green-dark);
+      font-size: 1.35rem;
+      font-weight: 800;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 4px;
+    }
+
+    nav a {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      padding: 8px 10px;
+      border-radius: 4px;
+      color: var(--ink);
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    nav a:hover, nav a:focus-visible {
+      background: var(--surface);
+      color: var(--green-dark);
+    }
+
+    .hero {
+      padding: 88px 0 92px;
+      background: var(--surface);
+    }
+
+    .hero-copy { max-width: 760px; }
+
+    h1, h2, h3 { line-height: 1.2; }
 
     h1 {
+      max-width: 700px;
       margin: 0;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(2.3rem, 8vw, 3.7rem);
-      font-weight: 500;
-      line-height: 1.1;
+      color: var(--green-dark);
+      font-size: clamp(2.35rem, 6vw, 4.2rem);
+      letter-spacing: 0;
     }
 
-    .byline {
-      margin: 12px 0 0;
+    .hero p {
+      max-width: 640px;
+      margin: 20px 0 28px;
+      color: var(--muted);
+      font-size: 1.2rem;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 20px;
+      border: 0;
+      border-radius: 4px;
+      background: var(--green);
+      color: #062c20;
+      font-size: 1rem;
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    .button:hover, .button:focus-visible { background: #0da875; }
+
+    section { padding: 72px 0; }
+
+    .section-heading {
+      margin: 0 0 14px;
+      color: var(--green-dark);
+      font-size: 2rem;
+    }
+
+    .section-intro {
+      max-width: 700px;
+      margin: 0 0 32px;
       color: var(--muted);
     }
 
-    .plans {
+    .benefit-grid, .steps, .faq-list {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-      align-items: stretch;
+      gap: 24px;
     }
 
-    .plan {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      min-width: 0;
-      padding: 24px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--card);
-      box-shadow: 0 8px 24px rgb(32 42 38 / 5%);
+    .benefit, .step {
+      padding-top: 18px;
+      border-top: 3px solid var(--green);
     }
 
-    .plan.featured {
-      border: 2px solid var(--green);
-      padding: 23px;
-    }
-
-    .badge {
-      position: absolute;
-      top: 0;
-      right: 16px;
-      transform: translateY(-50%);
-      padding: 4px 9px;
-      border-radius: 4px;
-      background: var(--green);
-      color: #fff;
-      font-size: 0.7rem;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-
-    h2 {
-      margin: 0;
+    .benefit h3, .step h3, .faq-item h3 {
+      margin: 0 0 8px;
       font-size: 1.15rem;
     }
 
-    .price {
-      margin: 12px 0 18px;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 2.2rem;
-      line-height: 1.1;
-    }
-
-    .price span {
-      color: var(--muted);
-      font-family: "Segoe UI", Tahoma, sans-serif;
-      font-size: 0.85rem;
-    }
-
-    .rule {
-      height: 1px;
-      margin-bottom: 17px;
-      border: 0;
-      background: var(--line);
-    }
-
-    ul {
-      display: grid;
-      gap: 11px;
+    .benefit p, .step p, .faq-item p {
       margin: 0;
-      padding: 0;
-      list-style: none;
-      color: #47534c;
-      font-size: 0.91rem;
-    }
-
-    li::before {
-      content: "✓";
-      margin-right: 9px;
-      color: var(--green);
-      font-weight: 700;
-    }
-
-    footer {
-      margin-top: 24px;
       color: var(--muted);
-      font-size: 0.8rem;
+    }
+
+    .how-section { background: var(--surface); }
+
+    .step-number {
+      display: inline-block;
+      margin-bottom: 12px;
+      color: var(--green-dark);
+      font-size: 1.5rem;
+      font-weight: 800;
+    }
+
+    .pricing-section { min-height: 180px; }
+
+    .faq-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      row-gap: 28px;
+    }
+
+    .faq-item {
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+    }
+
+    .contact-section {
+      background: var(--surface);
       text-align: center;
     }
 
-    @media (max-width: 680px) {
-      main { padding-top: 42px; }
-      .intro { margin-bottom: 28px; }
-      .plans { grid-template-columns: 1fr; gap: 14px; }
-      .plan { padding: 21px; }
-      .plan.featured { padding: 20px; }
+    .contact-section p { margin: 8px 0 0; }
+
+    .email {
+      color: var(--green-dark);
+      font-weight: 700;
+      overflow-wrap: anywhere;
+    }
+
+    footer {
+      padding: 22px 0;
+      color: var(--muted);
+      font-size: 0.875rem;
+      text-align: center;
+    }
+
+    #pricing .pricing-value {
+      margin: 0 0 28px;
+      color: var(--muted);
+    }
+
+    #pricing .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    #pricing .pricing-card {
+      display: flex;
+      flex-direction: column;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: #fff;
+    }
+
+    #pricing .pricing-card.recommended {
+      border: 2px solid var(--green-dark);
+      padding: 21px;
+    }
+
+    #pricing .recommendation {
+      margin: -5px 0 10px;
+      color: var(--green-dark);
+      font-size: 0.8rem;
+      font-weight: 750;
+      text-transform: uppercase;
+    }
+
+    #pricing .pricing-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.2rem;
+    }
+
+    #pricing .price {
+      margin: 0 0 14px;
+      color: var(--green-dark);
+      font-size: 1.6rem;
+      font-weight: 800;
+    }
+
+    #pricing .price-unit {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    #pricing .pricing-card p:not(.price):not(.recommendation) {
+      margin: 0 0 12px;
+      color: var(--muted);
+    }
+
+    #pricing .pricing-card .button {
+      margin-top: auto;
+    }
+
+    #pricing .pricing-conditions {
+      margin: 16px 0 0;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+
+    @media (max-width: 600px) {
+      html, body { max-width: 100%; overflow-x: hidden; }
+      .wrap { width: calc(100% - 32px); }
+      .header-inner { align-items: flex-start; flex-direction: column; gap: 4px; padding: 12px 0; }
+      nav { max-width: 100%; justify-content: flex-start; margin-inline: -6px; }
+      nav a { min-height: 44px; padding-inline: 8px; font-size: 16px; }
+      .hero { padding: 64px 0 68px; }
+      section { padding: 56px 0; }
+      .benefit-grid, .steps, .faq-list, #pricing .pricing-grid { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+      .benefit, .step, .faq-item, #pricing .pricing-card { min-width: 0; }
+      p, h1, h2, h3, a { overflow-wrap: anywhere; }
+      .button, button, input, select, textarea { min-height: 44px; }
+      body { font-size: 16px; }
+      footer, small, #pricing .recommendation, #pricing .pricing-conditions { font-size: 14px; }
     }
   </style>
 </head>
 <body>
-  <main>
-    <header class="intro">
-      <p class="eyebrow">Tallywise · simple money tracking</p>
-      <h1>Hello, pricing!</h1>
-      <p class="byline">Richard Pureveen</p>
-    </header>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top">CargoVolt</a>
+      <nav aria-label="Main navigation">
+        <a href="#benefits">Benefits</a>
+        <a href="#how">How it works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-    <section class="plans" aria-label="Tallywise monthly plans">
-      <article class="plan">
-        <h2>Free</h2>
-        <p class="price">€0 <span>/ month</span></p>
-        <hr class="rule">
-        <ul>
-          <li>Track 2 budgets</li>
-          <li>Monthly spending summary</li>
-          <li>Community support</li>
-        </ul>
-      </article>
-
-      <article class="plan featured">
-        <span class="badge">Most popular</span>
-        <h2>Basic</h2>
-        <p class="price">€8 <span>/ month</span></p>
-        <hr class="rule">
-        <ul>
-          <li>Unlimited budgets</li>
-          <li>Custom spending categories</li>
-          <li>Email support</li>
-        </ul>
-      </article>
-
-      <article class="plan">
-        <h2>Pro</h2>
-        <p class="price">€18 <span>/ month</span></p>
-        <hr class="rule">
-        <ul>
-          <li>Everything in Basic</li>
-          <li>Shared household budgets</li>
-          <li>Priority support</li>
-        </ul>
-      </article>
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-copy">
+        <h1 id="hero-title">Emission-free delivery precisely when you need it.</h1>
+        <p>Emission-free delivery by electric cargo bikes for businesses in the city centre.</p>
+        <a class="button" href="#pricing">Explore pricing</a>
+      </div>
     </section>
 
-    <footer>Prices shown in euros, billed monthly.</footer>
+    <section id="benefits" aria-labelledby="benefits-title">
+      <div class="wrap">
+        <h2 class="section-heading" id="benefits-title">A better way to deliver in Zagreb</h2>
+        <p class="section-intro">CargoVolt delivers goods by electric cargo bike in the centre of Zagreb. Suppliers leave goods at our hub at the edge of the pedestrian zone, and our riders take them to shops, cafés, and restaurants. We also deliver shops' sales directly to customers' homes. Every delivery is made within a precise 1-hour slot chosen by you.</p>
+        <div class="benefit-grid">
+          <article class="benefit">
+            <h3>Reliable 1-hour slots</h3>
+            <p>Choose a precise delivery hour that works for your business.</p>
+          </article>
+          <article class="benefit">
+            <h3>Verifiable emissions reduction</h3>
+            <p>Each bike drop emits 0.03 kg CO2e, compared with 0.60 kg by van.</p>
+          </article>
+          <article class="benefit">
+            <h3>Keep streets moving</h3>
+            <p>Electric cargo bikes mean no streets blocked by large delivery vans.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="how-section" id="how" aria-labelledby="how-title">
+      <div class="wrap">
+        <h2 class="section-heading" id="how-title">How it works</h2>
+        <div class="steps">
+          <article class="step">
+            <span class="step-number">01</span>
+            <h3>Drop off your goods</h3>
+            <p>Suppliers leave goods at our hub at the edge of the pedestrian zone.</p>
+          </article>
+          <article class="step">
+            <span class="step-number">02</span>
+            <h3>Choose your delivery slot</h3>
+            <p>Pick the precise 1-hour slot that suits your schedule.</p>
+          </article>
+          <article class="step">
+            <span class="step-number">03</span>
+            <h3>We deliver by bike</h3>
+            <p>We deliver emission-free to your location or your customer's home.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="pricing-section" id="pricing" aria-labelledby="pricing-title">
+      <div class="wrap">
+        <h2 class="section-heading" id="pricing-title">Pricing</h2>
+        <p class="pricing-value">Reliable 1-hour deliveries, zero emissions.</p>
+        <div class="pricing-grid">
+          <article class="pricing-card">
+            <h3>CargoVolt Peak</h3>
+            <p class="price">€7.00 <span class="price-unit">per drop</span></p>
+            <p>For time-critical deliveries</p>
+            <p>1-hour slot during peak hours (07:00-10:00 and 16:00-19:00)</p>
+            <a class="button" href="#contact">Choose CargoVolt Peak</a>
+          </article>
+          <article class="pricing-card recommended">
+            <p class="recommendation">Recommended</p>
+            <h3>CargoVolt Flex</h3>
+            <p class="price">€6.00 <span class="price-unit">per drop</span></p>
+            <p>For flexible deliveries</p>
+            <p>1-hour slot during off-peak hours (10:00-16:00)</p>
+            <a class="button" href="#contact">Choose CargoVolt Flex</a>
+          </article>
+          <article class="pricing-card">
+            <h3>CargoVolt Volume</h3>
+            <p class="price">€4.50 <span class="price-unit">per drop</span></p>
+            <p>For high-volume restocking</p>
+            <p>1-hour slot during off-peak hours (10:00-16:00)</p>
+            <a class="button" href="#contact">Choose CargoVolt Volume</a>
+          </article>
+        </div>
+        <p class="pricing-conditions">Volume discount available for 100+ drops/month, delivered 10:00-16:00. All prices exclude VAT.</p>
+      </div>
+    </section>
+
+    <section id="faq" aria-labelledby="faq-title">
+      <div class="wrap">
+        <h2 class="section-heading" id="faq-title">Frequently asked questions</h2>
+        <div class="faq-list">
+          <article class="faq-item">
+            <h3>What counts as a peak hour?</h3>
+            <p>Peak hours are 07:00-10:00 and 16:00-19:00. These are reserved for our Peak rate to guarantee your 1-hour slot when the city is busiest.</p>
+          </article>
+          <article class="faq-item">
+            <h3>How does the Volume discount work?</h3>
+            <p>If you ship more than 100 drops a month and schedule them during our off-peak hours (10:00-16:00), you qualify for our €4.50 Volume rate.</p>
+          </article>
+          <article class="faq-item">
+            <h3>How long is a delivery slot?</h3>
+            <p>Every delivery is made within a precise 1-hour slot chosen by you.</p>
+          </article>
+          <article class="faq-item">
+            <h3>How much CO2e does a bike drop emit?</h3>
+            <p>0.03 kg CO2e per drop by bike, compared with 0.60 kg by van.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact" aria-labelledby="contact-title">
+      <div class="wrap">
+        <h2 class="section-heading" id="contact-title">Contact CargoVolt</h2>
+        <p>For cafés, restaurants, independent shops, and chain stores in the pedestrian zone.</p>
+        <p><a class="email" href="mailto:info@cargovolt.com">info@cargovolt.com</a></p>
+      </div>
+    </section>
   </main>
+
+  <footer class="wrap">© 2026 CargoVolt student project, fictitious company</footer>
 </body>
 </html>
