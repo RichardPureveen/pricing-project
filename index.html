@@ -17,7 +17,10 @@
 
     * { box-sizing: border-box; }
 
-    html { scroll-behavior: smooth; }
+    html { 
+      scroll-behavior: smooth; 
+      scroll-padding-top: 80px; 
+    }
 
     body {
       margin: 0;
@@ -38,6 +41,9 @@
     .site-header {
       border-bottom: 1px solid var(--line);
       background: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
 
     .header-inner {
@@ -267,10 +273,6 @@
       html { scroll-behavior: auto; }
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-    }
-
     @media (max-width: 600px) {
       html, body { max-width: 100%; overflow-x: hidden; }
       .wrap { width: calc(100% - 32px); }
@@ -305,8 +307,8 @@
   <main id="top">
     <section class="hero" aria-labelledby="hero-title">
       <div class="wrap hero-copy">
-        <h1 id="hero-title">Emission-free delivery precisely when you need it.</h1>
-        <p>Emission-free delivery by electric cargo bikes for businesses in the city centre.</p>
+        <h1 id="hero-title">Emission-free delivery precisely when you need it</h1>
+        <p>Emission-free delivery by electric cargo bikes for businesses in the city centre</p>
         <a class="button" href="#pricing">Explore pricing</a>
       </div>
     </section>
@@ -322,7 +324,7 @@
           </article>
           <article class="benefit">
             <h3>Verifiable emissions reduction</h3>
-            <p>Each bike drop emits 0.03 kg CO2e, compared with 0.60 kg by van.</p>
+            <p>Each bike drop emits <strong>0.03 kg CO2e</strong>, compared with <strong>0.60 kg</strong> by van.</p>
           </article>
           <article class="benefit">
             <h3>Keep streets moving</h3>
@@ -358,7 +360,7 @@
     <section class="pricing-section" id="pricing" aria-labelledby="pricing-title">
       <div class="wrap">
         <h2 class="section-heading" id="pricing-title">Pricing</h2>
-        <p class="pricing-value">Reliable 1-hour deliveries, zero emissions.</p>
+        <p class="pricing-value">Reliable 1-hour deliveries, zero emissions</p>
         <div class="pricing-grid">
           <article class="pricing-card">
             <h3>CargoVolt Peak</h3>
@@ -383,7 +385,10 @@
             <a class="button" href="#contact">Choose CargoVolt Volume</a>
           </article>
         </div>
-        <p class="pricing-conditions">Volume discount available for 100+ drops/month, delivered 10:00-16:00. All prices exclude VAT.</p>
+        <p class="pricing-conditions">
+          Volume discount available for 100+ drops/month, delivered 10:00-16:00.<br>
+          All prices exclude VAT.
+        </p>
       </div>
     </section>
 
@@ -405,7 +410,7 @@
           </article>
           <article class="faq-item">
             <h3>How much CO2e does a bike drop emit?</h3>
-            <p>0.03 kg CO2e per drop by bike, compared with 0.60 kg by van.</p>
+            <p><strong>0.03 kg CO2e</strong> per drop by bike, compared with <strong>0.60 kg</strong> by van.</p>
           </article>
         </div>
       </div>
@@ -415,7 +420,7 @@
       <div class="wrap">
         <h2 class="section-heading" id="contact-title">Contact CargoVolt</h2>
         <p>For cafés, restaurants, independent shops, and chain stores in the pedestrian zone.</p>
-        <p><a class="email" href="mailto:info@cargovolt.com">info@cargovolt.com</a></p>
+        <p><a class="email" href="mailto:contact@cargovolt.com">contact@cargovolt.com</a></p>
       </div>
     </section>
   </main>
